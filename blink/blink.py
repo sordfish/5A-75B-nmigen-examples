@@ -1,5 +1,5 @@
 from nmigen import *
-from nmigen_boards.icebreaker import ICEBreakerPlatform
+from nmigen_boards.colorlight_5a_75b_7_0 import Colorlight5a75b70Platform
 
 
 class Blinker(Elaboratable):
@@ -7,7 +7,7 @@ class Blinker(Elaboratable):
         self.maxperiod = maxperiod
 
     def elaborate(self, platform):
-        led = platform.request("led_r")
+        led = platform.request("user_led")
 
         m = Module()
 
@@ -24,5 +24,5 @@ class Blinker(Elaboratable):
         return m
 
 
-plat = ICEBreakerPlatform()
-plat.build(Blinker(10000000), do_program=True)
+plat = Colorlight5a75b70Platform()
+plat.build(Blinker(10000000), do_program=False)
